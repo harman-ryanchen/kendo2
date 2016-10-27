@@ -1,7 +1,10 @@
 package mingjian.com.kendo.Presenter;
 
+import android.util.ArrayMap;
+
 import java.util.List;
 
+import mingjian.com.kendo.Model.Source.BaseBean;
 import mingjian.com.kendo.Model.Source.FuLi;
 import mingjian.com.kendo.View.BaseView;
 
@@ -12,7 +15,7 @@ import mingjian.com.kendo.View.BaseView;
 public interface HomeContract {
 
     interface View extends BaseView{
-        void LoadDatasResults(List<FuLi> fuLis);
+        void LoadDatasResults(ArrayMap<String, List<BaseBean>> stringListArrayMap);
         void LoadDatasFail();
     }
     interface Presenter extends BasePresenter{

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import mingjian.com.kendo.Adapter.HomeDisplayAdapter;
+import mingjian.com.kendo.Model.Source.BaseBean;
 import mingjian.com.kendo.Model.Source.FuLi;
 import mingjian.com.kendo.Presenter.HomeContract;
 import mingjian.com.kendo.Presenter.HomePresenter;
@@ -61,15 +63,14 @@ public class HomeFragment extends ParentFragment implements HomeContract.View {
     }
 
     @Override
-    public void LoadDatasResults(List<FuLi> fuLis) {
+    public void LoadDatasResults(ArrayMap<String, List<BaseBean>> map) {
         if (displayAdapter == null) {
-            displayAdapter = new HomeDisplayAdapter(context, fuLis);
+            displayAdapter = new HomeDisplayAdapter(context, map,homePresenter);
             displayV.setAdapter(displayAdapter);
         } else {
-            displayAdapter.setmFuLis(fuLis);
+            displayAdapter.setmFuLis(map);
             displayAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override

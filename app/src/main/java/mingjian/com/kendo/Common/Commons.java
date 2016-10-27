@@ -12,4 +12,13 @@ public class Commons {
     public static final String IOS = "IOS";
     public static final String ANDROID = "ANDROID";
     public static final String ALL = "ALL";
+
+
+    public enum ITEM_TYPE {
+        ITEM_TYPE_FULI,
+        ITEM_TYPE_IOS,
+        ITEM_TYPE_ANDROID,
+        ITEM_TYPE_VEDIO
+
+    }
 }

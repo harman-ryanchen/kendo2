@@ -5,4 +5,13 @@ package mingjian.com.kendo.Model.Source;
  */
 
 public class BaseBean {
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

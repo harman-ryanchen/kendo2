@@ -1,10 +1,7 @@
 package mingjian.com.kendo.Model.Api;
 
-import java.util.List;
-
-import mingjian.com.kendo.Model.Source.AllGanHuoResult;
+import mingjian.com.kendo.Model.Source.VideoDatasResult;
 import mingjian.com.kendo.Model.Source.AndroidResult;
-import mingjian.com.kendo.Model.Source.FuLi;
 import mingjian.com.kendo.Model.Source.FuLiResult;
 import mingjian.com.kendo.Model.Source.IOSResult;
 import retrofit2.http.GET;
@@ -30,5 +27,5 @@ public interface ApiService {
 
     //http://gank.io/api/data/all/20/2
     @GET("data/all/{number}/{page}")
-    Observable<AllGanHuoResult> getGanHuos(@Path("number") int number, @Path("page") int page);
+    Observable<VideoDatasResult> getGanHuos(@Path("number") int number, @Path("page") int page);
 }
