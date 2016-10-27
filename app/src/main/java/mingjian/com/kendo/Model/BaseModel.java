@@ -1,7 +1,10 @@
 package mingjian.com.kendo.Model;
 
+import android.util.ArrayMap;
+
 import java.util.List;
 
+import mingjian.com.kendo.Model.Source.BaseBean;
 import mingjian.com.kendo.Model.Source.FuLi;
 
 /**
@@ -15,7 +18,7 @@ public interface BaseModel<T> {
 
     interface LoadFuLisCallback {
 
-        void onDatasLoaded(List<FuLi> fuLis);
+        void onDatasLoaded(ArrayMap<String, List<BaseBean>> stringListArrayMap);
 
         void onDataNotAvailable();
     }
