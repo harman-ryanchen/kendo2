@@ -1,9 +1,12 @@
 package mingjian.com.kendo.Presenter;
 
+import android.util.ArrayMap;
+
 import java.util.List;
 
 import mingjian.com.kendo.Model.BaseModel;
 import mingjian.com.kendo.Model.HomeModel;
+import mingjian.com.kendo.Model.Source.BaseBean;
 import mingjian.com.kendo.Model.Source.FuLi;
 
 /**
@@ -23,13 +26,13 @@ public class HomePresenter implements HomeContract.Presenter{
     public void start() {
         homeModel.loadResultDatas(new BaseModel.LoadFuLisCallback() {
             @Override
-            public void onDatasLoaded(List<FuLi> fuLis) {
-                targetView.LoadDatasResults(fuLis);
+            public void onDatasLoaded(ArrayMap<String, List<BaseBean>> stringListArrayMap) {
+
             }
 
             @Override
             public void onDataNotAvailable() {
-                targetView.LoadDatasFail();
+
             }
         });
     }

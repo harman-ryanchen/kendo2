@@ -4,7 +4,7 @@ package mingjian.com.kendo.Model.Source;
  * Created by studio02 on 10/25/16.
  */
 
-public class FuLi {
+public class FuLi extends BaseBean{
 
     /**
      * _id : 58078baf421aa91369f9594c

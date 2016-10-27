@@ -8,12 +8,8 @@ public class Commons {
     //http://gank.io/api/data/福利/10/1
     public static String GanhuoBaseApi = "http://gank.io/api/";
 
-    public static final String CLOSE = "Close";
-    public static final String BUILDING = "Building";
-    public static final String BOOK = "Book";
-    public static final String PAINT = "Paint";
-    public static final String CASE = "Case";
-    public static final String SHOP = "Shop";
-    public static final String PARTY = "Party";
-    public static final String MOVIE = "Movie";
+    public static final String FULI = "FULI";
+    public static final String IOS = "IOS";
+    public static final String ANDROID = "ANDROID";
+    public static final String ALL = "ALL";
 }

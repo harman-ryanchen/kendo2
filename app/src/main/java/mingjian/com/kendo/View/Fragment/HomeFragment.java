@@ -3,12 +3,15 @@ package mingjian.com.kendo.View.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import mingjian.com.kendo.Adapter.HomeDisplayAdapter;
 import mingjian.com.kendo.Model.Source.FuLi;
 import mingjian.com.kendo.Presenter.HomeContract;
 import mingjian.com.kendo.Presenter.HomePresenter;
@@ -21,6 +24,9 @@ import mingjian.com.kendo.R;
 public class HomeFragment extends ParentFragment implements HomeContract.View {
     private HomePresenter homePresenter;
     private Context context;
+    private RecyclerView displayV;
+    private HomeDisplayAdapter displayAdapter;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -30,9 +36,16 @@ public class HomeFragment extends ParentFragment implements HomeContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home,null);
+        View rootView = inflater.inflate(R.layout.fragment_home, null);
+        displayV = (RecyclerView) rootView.findViewById(R.id.display_rv);
+        initDisplayView();
         homePresenter = new HomePresenter(this);
         return rootView;
+    }
+
+    private void initDisplayView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        displayV.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -49,12 +62,21 @@ public class HomeFragment extends ParentFragment implements HomeContract.View {
 
     @Override
     public void LoadDatasResults(List<FuLi> fuLis) {
+        if (displayAdapter == null) {
+            displayAdapter = new HomeDisplayAdapter(context, fuLis);
+            displayV.setAdapter(displayAdapter);
+        } else {
+            displayAdapter.setmFuLis(fuLis);
+            displayAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
     public void LoadDatasFail() {
 
     }
+
     public static HomeFragment newInstance() {
 
         Bundle args = new Bundle();
