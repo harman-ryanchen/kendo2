@@ -17,6 +17,7 @@ import mingjian.com.kendo.Model.Source.AndroidResult;
 import mingjian.com.kendo.Model.Source.BaseBean;
 import mingjian.com.kendo.Model.Source.FuLi;
 import mingjian.com.kendo.Model.Source.IOSResult;
+import mingjian.com.kendo.Model.Source.VideoDatasResult;
 import mingjian.com.kendo.Presenter.BasePresenter;
 import mingjian.com.kendo.Presenter.HomePresenter;
 import mingjian.com.kendo.R;
@@ -45,23 +46,38 @@ public class HomeDisplayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (viewType == Commons.ITEM_TYPE.ITEM_TYPE_FULI.ordinal()) {
             return new FuliViewHolder(mLayoutInflater.inflate(R.layout.item_home_display_fuli, parent, false), this);
         } else {
-            return new FuliViewHolder(mLayoutInflater.inflate(R.layout.item_home_display_normal, parent, false), this);
+            return new GanHuoViewHolder(mLayoutInflater.inflate(R.layout.item_home_display_normal, parent, false), this);
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (mDatas.get(position).getType().equals(Commons.ITEM_TYPE.ITEM_TYPE_FULI.name())){
+        if (mDatas.get(position).getItemtype().equals(Commons.ITEM_TYPE.ITEM_TYPE_FULI.name())){
             FuLi fuLi = (FuLi) mDatas.get(position);
             if (holder instanceof FuliViewHolder){
                 FuliViewHolder fuliViewHolder = (FuliViewHolder) holder;
-
+                fuliViewHolder.mTextView.setText(fuLi.getCreatedAt());
+                fuliViewHolder.simpleDraweeView.setImageURI(fuLi.getUrl());
             }
-        }else{
 
+        } else if (mDatas.get(position).getItemtype().equals(Commons.ITEM_TYPE.ITEM_TYPE_ANDROID.name())){
+            AndroidResult.ResultsBean bean = (AndroidResult.ResultsBean) mDatas.get(position);
             if (holder instanceof GanHuoViewHolder){
-                GanHuoViewHolder ganHuoViewHolder = (GanHuoViewHolder) holder;
+                GanHuoViewHolder ganHuoViewHolder  = (GanHuoViewHolder) holder;
+                ganHuoViewHolder.dec.setText(bean.getDesc() + "  (" +bean.getWho()+")");
+            }
 
+        }else if (mDatas.get(position).getItemtype().equals(Commons.ITEM_TYPE.ITEM_TYPE_IOS.name())){
+            IOSResult.ResultsBean bean = (IOSResult.ResultsBean) mDatas.get(position);
+            if (holder instanceof GanHuoViewHolder){
+                GanHuoViewHolder ganHuoViewHolder  = (GanHuoViewHolder) holder;
+                ganHuoViewHolder.dec.setText(bean.getDesc() + "  (" +bean.getWho()+")");
+            }
+        }else if (mDatas.get(position).getItemtype().equals(Commons.ITEM_TYPE.ITEM_TYPE_VEDIO.name())){
+            VideoDatasResult.ResultsBean bean = (VideoDatasResult.ResultsBean) mDatas.get(position);
+            if (holder instanceof GanHuoViewHolder){
+                GanHuoViewHolder ganHuoViewHolder  = (GanHuoViewHolder) holder;
+                ganHuoViewHolder.dec.setText(bean.getDesc() + "  (" +bean.getWho()+")");
             }
         }
     }
@@ -98,12 +114,10 @@ public class HomeDisplayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public static class GanHuoViewHolder extends RecyclerView.ViewHolder {
         TextView dec;
-        TextView who;
 
         GanHuoViewHolder(View view, HomeDisplayAdapter adapter) {
             super(view);
             dec = (TextView) view.findViewById(R.id.item_homedisplay_dec);
-            dec = (TextView) view.findViewById(R.id.item_homedisplay_who);
         }
     }
 }

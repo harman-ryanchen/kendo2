@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import mingjian.com.kendo.Common.Commons;
 import mingjian.com.kendo.Model.BaseModel;
 import mingjian.com.kendo.Model.HomeModel;
 import mingjian.com.kendo.Model.Source.BaseBean;
@@ -63,15 +64,19 @@ public class HomePresenter implements HomeContract.Presenter{
     public List<BaseBean> getItems(ArrayMap<String,List<BaseBean>> datas){
         if (datas==null)return null;
         List<BaseBean> beanList = new ArrayList<>();
-        Iterator iter = datas.entrySet().iterator();
-        while (iter.hasNext()) {
-            ArrayMap.Entry entry= (ArrayMap.Entry) iter.next();
-            List<BaseBean> value = (List<BaseBean>) entry.getValue();
-            for (BaseBean b: value){
-                b.setType((Integer) entry.getKey());
-            }
-            beanList.addAll(value);
-        }
+//        Iterator iter = datas.entrySet().iterator();
+//        while (iter.hasNext()) {
+//            ArrayMap.Entry entry= (ArrayMap.Entry) iter.next();
+//            List<BaseBean> value = (List<BaseBean>) entry.getValue();
+//            for (BaseBean b: value){
+//                b.setItemtype((String) entry.getKey());
+//            }
+//            beanList.addAll(value);
+//        }
+        beanList.addAll(datas.get(Commons.ITEM_TYPE.ITEM_TYPE_FULI.name()));
+        beanList.addAll(datas.get(Commons.ITEM_TYPE.ITEM_TYPE_ANDROID.name()));
+        beanList.addAll(datas.get(Commons.ITEM_TYPE.ITEM_TYPE_IOS.name()));
+        beanList.addAll(datas.get(Commons.ITEM_TYPE.ITEM_TYPE_VEDIO.name()));
         return beanList;
     }
 
