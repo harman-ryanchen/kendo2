@@ -19,13 +19,14 @@ import java.util.List;
 
 import mingjian.com.kendo.Common.Commons;
 import mingjian.com.kendo.View.Fragment.HomeFragment;
+import mingjian.com.kendo.View.Fragment.KenDoPGalleryFragment;
 import yalantis.com.sidemenu.interfaces.Resourceble;
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 import yalantis.com.sidemenu.model.SlideMenuItem;
 import yalantis.com.sidemenu.util.ViewAnimator;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        HomeFragment homeFragment = HomeFragment.newInstance();
+//        HomeFragment homeFragment = HomeFragment.newInstance();
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.add(R.id.content_main,homeFragment,"HomeF");
+//        transaction.addToBackStack(null);
+//        transaction.commitAllowingStateLoss();
+        KenDoPGalleryFragment kenDoPGalleryFragment = KenDoPGalleryFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.content_main,homeFragment,"HomeF");
+        transaction.add(R.id.content_main, kenDoPGalleryFragment, "GALLERY");
         transaction.addToBackStack(null);
         transaction.commitAllowingStateLoss();
     }
