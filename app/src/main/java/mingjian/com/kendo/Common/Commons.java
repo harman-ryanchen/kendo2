@@ -7,6 +7,8 @@ package mingjian.com.kendo.Common;
 public class Commons {
     //http://gank.io/api/data/福利/10/1
     public static String GanhuoBaseApi = "http://gank.io/api/";
+    public static String APP_ID = "4gMSjuaqWkznBk0wdTaJYoYg-gzGzoHsz";
+    public static String APP_KEY = "XmQnx9wX73XuOSe3TU87mlk1";
 
     public static final String FULI = "FULI";
     public static final String IOS = "IOS";
