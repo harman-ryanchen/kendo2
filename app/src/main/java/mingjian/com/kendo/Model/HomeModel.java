@@ -81,5 +81,10 @@ public class HomeModel implements BaseModel<FuLi> {
         });
     }
 
+    @Override
+    public void loadMingPictureDatasLoaded(LoadMingPicturesCallback loadMingPicturesCallback) {
+
+    }
+
 
 }

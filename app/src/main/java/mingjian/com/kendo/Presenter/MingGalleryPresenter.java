@@ -7,6 +7,7 @@ import java.util.List;
 import mingjian.com.kendo.Model.BaseModel;
 import mingjian.com.kendo.Model.MingGalleryModel;
 import mingjian.com.kendo.Model.Source.BaseBean;
+import mingjian.com.kendo.Model.Source.MingPicture;
 
 /**
  * Created by studio02 on 11/3/16.
@@ -23,10 +24,10 @@ public class MingGalleryPresenter implements MingGalleryContract.Presenter {
 
     @Override
     public void start() {
-        mingGalleryModel.loadResultDatas(new BaseModel.LoadFuLisCallback() {
+        mingGalleryModel.loadMingPictureDatasLoaded(new BaseModel.LoadMingPicturesCallback() {
             @Override
-            public void onDatasLoaded(ArrayMap<String, List<BaseBean>> stringListArrayMap) {
-
+            public void onDatasLoaded(List<MingPicture> pictures) {
+                view.LoadDatasResults(pictures);
             }
 
             @Override

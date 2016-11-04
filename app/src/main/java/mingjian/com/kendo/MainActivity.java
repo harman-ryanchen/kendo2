@@ -1,11 +1,11 @@
 package mingjian.com.kendo;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,20 +13,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import mingjian.com.kendo.Common.Commons;
 import mingjian.com.kendo.View.Fragment.HomeFragment;
 import mingjian.com.kendo.View.Fragment.KenDoPGalleryFragment;
-import yalantis.com.sidemenu.interfaces.Resourceble;
-import yalantis.com.sidemenu.interfaces.ScreenShotable;
-import yalantis.com.sidemenu.model.SlideMenuItem;
-import yalantis.com.sidemenu.util.ViewAnimator;
+import mingjian.com.kendo.View.Fragment.KenDoSettingFragment;
+import mingjian.com.kendo.View.Fragment.KenDoVideoFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private Fragment currentFragment;
+    private HomeFragment homeFragment;
+    private KenDoPGalleryFragment kenDoPGalleryFragment;
+    private KenDoVideoFragment kenDoVideoFragment;
+    private KenDoSettingFragment kenDoSettingFragment;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -53,16 +54,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        HomeFragment homeFragment = HomeFragment.newInstance();
-//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//        transaction.add(R.id.content_main,homeFragment,"HomeF");
-//        transaction.addToBackStack(null);
-//        transaction.commitAllowingStateLoss();
-        KenDoPGalleryFragment kenDoPGalleryFragment = KenDoPGalleryFragment.newInstance();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.content_main, kenDoPGalleryFragment, "GALLERY");
-        transaction.addToBackStack(null);
-        transaction.commitAllowingStateLoss();
+        currentFragment = HomeFragment.newInstance();
+        switchFragment(currentFragment);
     }
 
 
@@ -105,10 +98,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-
+            // Handle the camer a action
+            currentFragment = HomeFragment.newInstance();
         } else if (id == R.id.nav_gallery) {
-
+            currentFragment = KenDoPGalleryFragment.newInstance();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -121,6 +114,12 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        switchFragment(currentFragment);
         return true;
+    }
+    private void switchFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_main, fragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 }
