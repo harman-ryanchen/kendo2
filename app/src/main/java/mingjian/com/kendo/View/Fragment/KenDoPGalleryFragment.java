@@ -1,5 +1,6 @@
 package mingjian.com.kendo.View.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,13 @@ public class KenDoPGalleryFragment extends ParentFragment implements MingGallery
     private MingGalleryPresenter mingGalleryPresenter;
     private RecyclerView mGalleryView;
     private MingGalleryAdapter mingGalleryAdapter;
+    private Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+    }
 
     @Nullable
     @Override
@@ -51,7 +59,7 @@ public class KenDoPGalleryFragment extends ParentFragment implements MingGallery
             @Override
             public void run() {
                 if (mingGalleryAdapter == null) {
-                    mingGalleryAdapter = new MingGalleryAdapter();
+                    mingGalleryAdapter = new MingGalleryAdapter(mContext);
                     mGalleryView.setAdapter(mingGalleryAdapter);
                     mingGalleryAdapter.refreshDatas(pictures);
                 } else {
