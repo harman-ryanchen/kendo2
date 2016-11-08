@@ -10,6 +10,10 @@ public class Commons {
     public static String APP_ID = "4gMSjuaqWkznBk0wdTaJYoYg-gzGzoHsz";
     public static String APP_KEY = "XmQnx9wX73XuOSe3TU87mlk1";
 
+    public static String MING_PICTURE_LIST = "MING_PICTURE_LIST";
+    public static String MING_PICTURE_LIST_POSITION = "MING_PICTURE_LIST_POSITION";
+    public static String MING_PICTURE_URL = "MING_PICTURE_URL";
+
     public static final String FULI = "FULI";
     public static final String IOS = "IOS";
     public static final String ANDROID = "ANDROID";

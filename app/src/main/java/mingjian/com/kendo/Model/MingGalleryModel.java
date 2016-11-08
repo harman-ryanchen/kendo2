@@ -7,7 +7,6 @@ import com.orhanobut.logger.Logger;
 import java.util.List;
 
 import mingjian.com.kendo.Model.Source.MingPicture;
-import mingjian.com.kendo.Utils.PostableHandler;
 import mingjian.com.kendo.Utils.ThreadPoolManager;
 
 /**
@@ -22,6 +21,12 @@ public class MingGalleryModel implements BaseModel<MingPicture> {
 
     @Override
     public void loadResultDatas(LoadFuLisCallback callback) {
+
+
+    }
+
+    @Override
+    public void loadMingPictureDatasLoaded(final LoadMingPicturesCallback loadMingPicturesCallback) {
         ThreadPoolManager.getWorkPool().postImmediately(new Runnable() {
             @Override
             public void run() {
@@ -31,11 +36,12 @@ public class MingGalleryModel implements BaseModel<MingPicture> {
                     for (MingPicture m : mingPictures){
                         Logger.d("TEST_CLOUD_DATA name =%s , url =%s",m.getDesc(),m.getUrl());
                     }
+                    loadMingPicturesCallback.onDatasLoaded(mingPictures);
                 } catch (AVException e) {
                     e.printStackTrace();
                 }
             }
         });
-
     }
+
 }
