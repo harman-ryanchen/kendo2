@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import mingjian.com.kendo.View.Fragment.HomeFragment;
+import mingjian.com.kendo.View.Fragment.KendoHomeFragment;
 import mingjian.com.kendo.View.Fragment.KenDoPGalleryFragment;
 import mingjian.com.kendo.View.Fragment.KenDoSettingFragment;
 import mingjian.com.kendo.View.Fragment.KenDoVideoFragment;
@@ -23,7 +23,7 @@ import mingjian.com.kendo.View.Fragment.KenDoVideoFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Fragment currentFragment;
-    private HomeFragment homeFragment;
+    private KendoHomeFragment kendoHomeFragment;
     private KenDoPGalleryFragment kenDoPGalleryFragment;
     private KenDoVideoFragment kenDoVideoFragment;
     private KenDoSettingFragment kenDoSettingFragment;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        currentFragment = HomeFragment.newInstance();
+        currentFragment = KendoHomeFragment.newInstance();
         switchFragment(currentFragment);
     }
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camer a action
-            currentFragment = HomeFragment.newInstance();
+            currentFragment = KendoHomeFragment.newInstance();
         } else if (id == R.id.nav_gallery) {
             currentFragment = KenDoPGalleryFragment.newInstance();
         } else if (id == R.id.nav_slideshow) {
